@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Desactivator : MonoBehaviour
 {
-    [SerializeField] private ShootAllTarget _shootAllTarget;
-    [SerializeField] private LoseTarget _loseTarget;
+    [SerializeField] private EndGame _shootAllTarget;
 
     // Update is called once per frame
     void Update()
     {
-        if (_shootAllTarget._end || _loseTarget.TargetLoseIsDead)
+        if (_shootAllTarget._end)
         {
             gameObject.SetActive(false);
         }

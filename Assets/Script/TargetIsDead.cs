@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TargetIsDead : MonoBehaviour
 {
-    [SerializeField] private CompTargetDead _compTargetDead;
+    [SerializeField] private bool isDead = false;
+    [SerializeField] private TargetsManager targetsManager;
+
+    public bool IsDead => isDead;
     private void OnTriggerStay(Collider collision)
     {
         if (collision.CompareTag("Shoot"))
         {
-            _compTargetDead.TargetIsDead();
-            Destroy(gameObject);
+            targetsManager.TargetIsDead();
+            isDead = true;
         }
     }
 }

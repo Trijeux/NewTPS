@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EndScript : MonoBehaviour
 {
-    [SerializeField] private ShootAllTarget _shootAllTarget;
+    [SerializeField] private EndGame _shootAllTarget;
     [SerializeField] private LoseTarget _loseTarget;
     [SerializeField] private Text _endText;
     [SerializeField] private Text _felicitationAndPerduText;

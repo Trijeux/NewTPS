@@ -14,8 +14,7 @@ public class ShootingSysteme : MonoBehaviour
     [SerializeField] private GameObject _shootingOrigin;
     [SerializeField] private float _maxShootDistance = 300;
     [SerializeField] private GameObject _impact;
-    [SerializeField] private CompTargetDead _compTargetDead;
-
+    [SerializeField] private GameObject cross;
     [SerializeField] private Text _maxAmmoText;
     [SerializeField] private Text _ammoText;
     [SerializeField] private Transform _CursorTransf;
@@ -51,6 +50,7 @@ public class ShootingSysteme : MonoBehaviour
         
         if (_input.isAiming)
         {
+            cross.SetActive(true);
             _shootingTarget.transform.position = _shootingTargetAim.transform.position;
 
             if (!_wasShot && _input.isShot)
@@ -89,6 +89,7 @@ public class ShootingSysteme : MonoBehaviour
         }
         else
         {
+            cross.SetActive(false);
             _shootingTarget.transform.position = _shootingTargetNoAim.transform.position;
         }
 
@@ -96,8 +97,6 @@ public class ShootingSysteme : MonoBehaviour
         {
             _ammo = _ammoMax;
         }
-        
-        _compTargetDead.StringTargetLife();
 
         _ammoText.text = _ammo.ToString();
         _maxAmmoText.text = _ammoMax.ToString();
