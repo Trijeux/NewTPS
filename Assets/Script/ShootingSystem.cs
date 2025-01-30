@@ -15,6 +15,10 @@ public class ShootingSysteme : MonoBehaviour
     [SerializeField] private float _maxShootDistance = 300;
     [SerializeField] private GameObject _impact;
     [SerializeField] private GameObject cross;
+    [SerializeField] private GameObject UiAim;
+    [SerializeField] private GameObject UiShoot;
+    [SerializeField] private GameObject UiRun;
+    [SerializeField] private GameObject UiControl;
     [SerializeField] private Text _maxAmmoText;
     [SerializeField] private Text _ammoText;
     [SerializeField] private Transform _CursorTransf;
@@ -24,6 +28,8 @@ public class ShootingSysteme : MonoBehaviour
     public bool _wasShot;
     public int _ammo;
     public int _ammoMax = 12;
+
+    private bool flagUi = false;
     
 
     private StarterAssetsInputs _input;
@@ -51,6 +57,9 @@ public class ShootingSysteme : MonoBehaviour
         if (_input.isAiming)
         {
             cross.SetActive(true);
+            UiAim.SetActive(false);
+            UiShoot.SetActive(true);
+            UiRun.SetActive(false);
             _shootingTarget.transform.position = _shootingTargetAim.transform.position;
 
             if (!_wasShot && _input.isShot)
@@ -89,6 +98,9 @@ public class ShootingSysteme : MonoBehaviour
         }
         else
         {
+            UiAim.SetActive(true);
+            UiRun.SetActive(true);
+            UiShoot.SetActive(false);
             cross.SetActive(false);
             _shootingTarget.transform.position = _shootingTargetNoAim.transform.position;
         }
@@ -98,6 +110,16 @@ public class ShootingSysteme : MonoBehaviour
             _ammo = _ammoMax;
         }
 
+        if (_input.isUI && !flagUi)
+        {
+            UiControl.SetActive(!UiControl.activeSelf);
+            flagUi = true;
+        }
+        else if(!_input.isUI && flagUi)
+        {
+            flagUi = false;
+        }
+        
         _ammoText.text = _ammo.ToString();
         _maxAmmoText.text = _ammoMax.ToString();
     }

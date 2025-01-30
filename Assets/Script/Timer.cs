@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private float _timer = 360;
+    [SerializeField] private float _timer = 360;
     private bool _timeEnd = false;
     [SerializeField]private TextMeshProUGUI timerText;
 

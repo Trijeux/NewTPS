@@ -28,6 +28,9 @@ namespace StarterAssets
 
 		[Header("Reload system")] 
 		public bool isReaload = false;
+		
+		[Header("UI system")] 
+		public bool isUI = false;
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -66,6 +69,11 @@ namespace StarterAssets
 		public void OnReload(InputValue value)
 		{
 			isReaload = value.isPressed;
+		}
+
+		public void OnUI(InputValue value)
+		{
+			isUI = value.isPressed;
 		}
 #endif
 
